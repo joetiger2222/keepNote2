@@ -6,4 +6,9 @@
         android:title="delete"
         app:showAsAction="always"
         ></item>
+    <item
+        android:id="@+id/pin"
+        android:icon="@drawable/pin"
+        android:title="pin"
+        app:showAsAction="always"></item>
 </menu>

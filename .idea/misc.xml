@@ -6,10 +6,16 @@
         <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/activity_note.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/activity_recent_note.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/activity_recent_todo_list_note.xml" value="0.2601010101010101" />
+        <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/activity_tabbed.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/activity_todo_list.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/background_color_custom_dialog.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/floatingactionbtn.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/font_size_custom_dialog.xml" value="0.36666666666666664" />
-        <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/todo_list_layout.xml" value="0.19306930693069307" />
+        <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/fragment_tabbed_.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/todo_list_layout.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/todolist_fragment_layout.xml" value="0.36666666666666664" />
+        <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/writitng_fragment_layout.xml" value="0.2601010101010101" />
         <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/menu/note_options_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/JOE/AndroidStudioProjects/KEEPTAKE2/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />

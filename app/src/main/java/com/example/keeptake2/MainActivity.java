@@ -3,16 +3,12 @@ package com.example.keeptake2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.media.session.PlaybackState;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,10 +16,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.time.temporal.ValueRange;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -40,14 +32,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView=findViewById(R.id.listView);
-        setWritingNotesAdapter();
+       // setWritingNotesAdapter();
 
-        if(writingNotesList.isEmpty())loadFromDBIntoWritingNotes();
+        /*if(writingNotesList.isEmpty())loadFromDBIntoWritingNotes();*/
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if(grayLinkedList.isEmpty()) {openExistingNote(i);}
+                if(grayLinkedList.isEmpty()) {*//*openExistingNote(i);*//*}
                 else{
                     if(isGray(i))changeItemColorWhite(i);
                     else changeItemColorGray(i);
@@ -63,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
                 else changeItemColorGray(i);
                 if(!grayLinkedList.isEmpty())showeDeleteBtn(deleteBtn);
                 else hideDeleteBtn(deleteBtn);
-                return true;}});
+                return true;}});*/
     }
 
-    public void hideDeleteBtn(MenuItem item){item.setVisible(false);}
+/*    public void hideDeleteBtn(MenuItem item){item.setVisible(false);}
     public void showeDeleteBtn(MenuItem item){item.setVisible(true);}
 
     public boolean isGray(int position){return grayLinkedList.contains(position);}
@@ -75,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
     public void changeItemColorGray(int position){
         addToGrayList(position);
         listView.getChildAt(position).setBackgroundColor(Color.GRAY);
-
     }
+
     public void changeItemColorWhite(int position){
         removeFrmGrayList(position);
         listView.getChildAt(position).setBackgroundColor(Color.WHITE);
@@ -92,34 +84,35 @@ public class MainActivity extends AppCompatActivity {
                 listView.getChildAt(grayLinkedList.get(i)).setBackgroundColor(Color.WHITE);
             }
         }
-    }
+    }*/
 
 
 
 
 
-    public void OpenNewNote(View view){
+/*    public void OpenNewNote(View view){
         Intent intent=new Intent(getApplicationContext(),noteActivity.class);
         startActivity(intent);
-    }
-    public void openExistingNote(int noteId){
+    }*/
+
+ /*   public void openExistingNote(int noteId){
         Intent intent=new Intent(getApplicationContext(),recentNoteActivity.class);
         intent.putExtra("noteId",noteId);
         startActivity(intent);
-    }
+    }*/
 
 
 
-    public void setWritingNotesAdapter(){
+ /*   public void setWritingNotesAdapter(){
         arrayAdapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,writingNotesList);
         listView.setAdapter(arrayAdapter);
-    }
+    }*/
 
 
 
 
 
-    public void loadFromDBIntoWritingNotes(){
+/*    public void loadFromDBIntoWritingNotes(){
         try {
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("WritingNoteDB", MODE_PRIVATE, null);
             sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS noteTable(title VARCHAR,noteText VARCHAR,noteFontSize int,noteBackGround int)");
@@ -136,27 +129,27 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
 
-    @Override
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.menu,menu);
         deleteBtn=menu.getItem(0);
         hideDeleteBtn(deleteBtn);
         return true;
-    }
+    }*/
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+/*    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.delete:createDeleteDialog();
         }
         return true;
-    }
+    }*/
 
-    public void createDeleteDialog(){
+   /* public void createDeleteDialog(){
         addToWillbeDeleted();
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("delete alert")
@@ -175,10 +168,10 @@ public class MainActivity extends AppCompatActivity {
                         willbeDeleted.clear();
                         hideDeleteBtn(deleteBtn);
                     }}).show();
-    }
+    }*/
 
 
-
+/*
     public LinkedList<String>willbeDeleted=new LinkedList<>();
     public void addToWillbeDeleted(){
         for(int i=0;i<grayLinkedList.size();i++){
@@ -198,23 +191,32 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
+    }*/
 
-    public void deleteFrmWritingNoteList(){
+/*    public void deleteFrmWritingNoteList(){
         for(int i=0;i<willbeDeleted.size();i++){writingNotesList.remove(willbeDeleted.get(i));}
         notifyAdapter();
-    }
+    }*/
 
-    public static void notifyAdapter(){arrayAdapter.notifyDataSetChanged();}
+    //public static void notifyAdapter(){arrayAdapter.notifyDataSetChanged();}
 
     @Override
     public void onBackPressed() {
         if(grayLinkedList.isEmpty()) super.onBackPressed();
         else{
-            chngAllPstnsWhite();
-            hideDeleteBtn(deleteBtn);
+            //chngAllPstnsWhite();
+            //hideDeleteBtn(deleteBtn);
             grayLinkedList.clear();
-            willbeDeleted.clear();
+           // willbeDeleted.clear();
         }
     }
+
+
+  /*  public void openTodoListActivity(View view) {
+        Intent intent=new Intent(this,todoList.class);
+        startActivity(intent);
+
+    }*/
+
+
 }

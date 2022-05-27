@@ -90,7 +90,7 @@ public class noteActivity extends AppCompatActivity {
     }
 
 
-    public void updateWritingNoteList(){MainActivity.writingNotesList.add(writingNoteTitle.getText().toString());}
+    public void updateWritingNoteList(){WritingNoteFragment.writingNotesList.add(writingNoteTitle.getText().toString());}
 
 
     public void createUnAcceptableTitleDialog(){
@@ -109,14 +109,14 @@ public class noteActivity extends AppCompatActivity {
     
     @Override
     public void onBackPressed() {
-        if(MainActivity.writingNotesList.contains(writingNoteTitle.getText().toString())){
+        if(WritingNoteFragment.writingNotesList.contains(writingNoteTitle.getText().toString())){
             createUnAcceptableTitleDialog();
         }else if(writingNoteTitle.getText().toString().equals("")){super.onBackPressed();}
         else {
             getNoteColor();
             saveNoteToDB();
             updateWritingNoteList();
-            MainActivity.notifyAdapter();
+            WritingNoteFragment.notifyAdapter();
             super.onBackPressed();
         }
     }

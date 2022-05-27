@@ -40,7 +40,7 @@ public class recentNoteActivity extends AppCompatActivity {
 
     public String getNoteTitle(int noteId){
         if(noteId!=-1)
-            return MainActivity.writingNotesList.get(noteId);
+            return WritingNoteFragment.writingNotesList.get(noteId);
         else
             return "error happened";
     }
