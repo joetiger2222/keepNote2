@@ -20,23 +20,20 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.LinkedList;
 
 public class recentTodoListNote extends AppCompatActivity {
-    LinkedList<String> RecentTodoLinkedList = new LinkedList<>();
-    LinkedList<String> todoLines = new LinkedList<>();
+    static LinkedList<String> RecentTodoLinkedList = new LinkedList<>();
     static LinkedList<Integer> todoCheckBoxStatus = new LinkedList<>();
     RecyclerView RecentRecyclerView;
     RecentTodoListAdapter RecentTodoListAdapter;
     EditText RecentTitle;
-     boolean isFirstAdd=true;
+
     static FloatingActionButton addLineRecentTodoList;
-    private String lastWordText="";
+
     int index=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recent_todo_list_note);
-        RecentTodoLinkedList.clear();
-        loadNoteFromDB();
         RecentRecyclerView=findViewById(R.id.recViewRecentTodoList);
         addLineRecentTodoList=findViewById(R.id.addLineRecentTodoList);
         RecentTitle=findViewById(R.id.RecentTodoListTitle);
@@ -45,6 +42,8 @@ public class recentTodoListNote extends AppCompatActivity {
         RecentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         RecentTitle.setText(getNoteTitle(getNoteId()));
+        RecentTodoLinkedList.clear();
+        loadNoteFromDB();
         notifyAdapter();
         index=TodoListFragment.todoListTitles.indexOf(RecentTitle.getText().toString());
 
@@ -67,6 +66,7 @@ public class recentTodoListNote extends AppCompatActivity {
                 if((getNoteTitle(getNoteId())).equals(cursor.getString(title))){
                     RecentTodoLinkedList.add(cursor.getString(todoText));
                     todoCheckBoxStatus.add(cursor.getInt(checkBoxStatus));
+                    Log.i("tesstHello",RecentTodoLinkedList.get(0));
                 }
                 cursor.moveToNext();
             }
@@ -92,33 +92,9 @@ public class recentTodoListNote extends AppCompatActivity {
 
 
 
-    public void addNewLineRecentTodoList(View view){//not working properly yet
-
-        View view1= RecentRecyclerView.getChildAt(RecentTodoLinkedList.size()-1);
-        EditText editText=view1.findViewById(R.id.word);
-        lastWordText=editText.getText().toString();
-        if(isFirstAdd){
-            isFirstAdd=false;
-            RecentTodoLinkedList.add("");
-            todoCheckBoxStatus.add(0);
-            notifyAdapter();
-        }else{
-            if(lastWordText.equals("")){
-
-            }else {
-                RecentTodoLinkedList.set(RecentTodoLinkedList.size() - 1, lastWordText);
-                RecentTodoLinkedList.add("");
-                todoCheckBoxStatus.add(0);
-                notifyAdapter();
-            }
-        }
-
-    }
 
 
-    public void updateTodoNoteList(){
-        TodoListFragment.todoListTitles.set(index,RecentTitle.getText().toString());
-    }
+    public void updateTodoNoteList(){TodoListFragment.todoListTitles.set(index,RecentTitle.getText().toString());}
 
     public void updateDB() {
         try {
@@ -126,6 +102,7 @@ public class recentTodoListNote extends AppCompatActivity {
             sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS todoTable(checkBoxStatus int,todoText VARCHAR,title VARCHAR)");
             for (int i = 0; i < RecentTodoLinkedList.size(); i++) {
                 sqLiteDatabase.execSQL("UPDATE todoTable SET checkBoxStatus= " + "'" + todoCheckBoxStatus.get(i) + "'"+" , todoText = " +  "'" + RecentTodoLinkedList.get(i) + "'" + " ,title = " + "'" + RecentTitle.getText().toString() + "'"+"WHERE title ="+"'"+getNoteTitle(getNoteId())+"'");
+
             }
             sqLiteDatabase.close();
         } catch (Exception e) {
@@ -135,36 +112,6 @@ public class recentTodoListNote extends AppCompatActivity {
 
 
 
-/*
-    public void addToDB() {
-        try {
-            SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("WritingNoteDB", MODE_PRIVATE, null);
-            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS todoTable(checkBoxStatus int,todoText VARCHAR,title VARCHAR)");
-            for (int i = 0; i < RecentTodoLinkedList.size(); i++) {
-*//*
-                sqLiteDatabase.execSQL("UPDATE todoTable SET checkBoxStatus= " + "'" + todoCheckBoxStatus.get(i) + "'"+" , todoText = " +  "'" + RecentTodoLinkedList.get(i) + "'" + " ,title = " + "'" + RecentTitle.getText().toString() + "'"+"WHERE title ="+"'"+getNoteTitle(getNoteId())+"'");
-*//*
-                sqLiteDatabase.execSQL("INSERT INTO todoTable (checkBoxStatus , todoText , title) values (" + "'" + todoCheckBoxStatus.get(i) + "'" + " , " + "'" + todoLines.get(i) + "'" + " , " + "'" + RecentTitle.getText().toString() + "'" + ")");
-            }
-            sqLiteDatabase.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void removeFrmDB(){
-        try {
-            SQLiteDatabase sqLiteDatabase = openOrCreateDatabase("WritingNoteDB", MODE_PRIVATE, null);
-            sqLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS todoTable(checkBoxStatus int,todoText VARCHAR,title VARCHAR)");
-            sqLiteDatabase.execSQL("DELETE  FROM todoTable WHERE title="+"'"+recentTitleBeforeEdit+"'");
-            sqLiteDatabase.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    */
 
 
 

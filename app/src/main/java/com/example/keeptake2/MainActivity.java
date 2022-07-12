@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
     //public static void notifyAdapter(){arrayAdapter.notifyDataSetChanged();}
 
-    @Override
+  /*  @Override
     public void onBackPressed() {
         if(grayLinkedList.isEmpty()) super.onBackPressed();
         else{
@@ -210,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
            // willbeDeleted.clear();
         }
     }
-
+*/
 
   /*  public void openTodoListActivity(View view) {
         Intent intent=new Intent(this,todoList.class);

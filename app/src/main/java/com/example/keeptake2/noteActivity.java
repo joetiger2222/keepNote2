@@ -1,6 +1,7 @@
 package com.example.keeptake2;
 
 import static com.example.keeptake2.FontSizeCustomDialog.fontSizeNewNote;
+import static com.example.keeptake2.WritingNoteFragment.writingNotesList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -90,7 +91,8 @@ public class noteActivity extends AppCompatActivity {
     }
 
 
-    public void updateWritingNoteList(){WritingNoteFragment.writingNotesList.add(writingNoteTitle.getText().toString());}
+    public void updateWritingNoteList(){
+        writingNotesList.add(writingNoteTitle.getText().toString());}
 
 
     public void createUnAcceptableTitleDialog(){
@@ -106,10 +108,11 @@ public class noteActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {}}).show();
     }
+
     
     @Override
     public void onBackPressed() {
-        if(WritingNoteFragment.writingNotesList.contains(writingNoteTitle.getText().toString())){
+        if(writingNotesList.contains(writingNoteTitle.getText().toString())){
             createUnAcceptableTitleDialog();
         }else if(writingNoteTitle.getText().toString().equals("")){super.onBackPressed();}
         else {

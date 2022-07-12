@@ -1,5 +1,6 @@
 package com.example.keeptake2;
 
+import static com.example.keeptake2.recentTodoListNote.RecentTodoLinkedList;
 import static com.example.keeptake2.recentTodoListNote.addLineRecentTodoList;
 
 import android.content.Context;
@@ -64,8 +65,19 @@ public class RecentTodoListAdapter extends RecyclerView.Adapter<RecentTodoListAd
                 }
             }
         });
+        holder.word.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+            @Override
+            public void afterTextChanged(Editable editable) {RecentTodoLinkedList.set(holder.getAdapterPosition(),editable.toString());}});
 
     }
+
+
+
+
 
 
     @Override
@@ -83,7 +95,6 @@ public class RecentTodoListAdapter extends RecyclerView.Adapter<RecentTodoListAd
             checkBox=itemView.findViewById(R.id.checkBoxBtn);
             this.recentTodoListAdapter=recentTodoListAdapter;
         }
-
     }
 
 

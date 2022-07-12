@@ -40,7 +40,7 @@ import java.util.zip.Inflater;
 public class WritingNoteFragment extends Fragment {
     public static MenuItem deleteBtn;
     static MenuItem pinBtn;
-    ListView listView;
+    static ListView listView;
     FloatingActionButton addBtn;
     static ArrayList<String> writingNotesList=new ArrayList<>();
     public static LinkedList<Integer> grayLinkedList=new LinkedList<>();
@@ -143,7 +143,7 @@ public class WritingNoteFragment extends Fragment {
         int index=grayLinkedList.indexOf(position);
         grayLinkedList.remove(index);}
 
-    public void chngAllPstnsWhite(){
+    public static void chngAllPstnsWhite(){
         for(int i=0;i<grayLinkedList.size();i++){
             if(grayLinkedList.get(i)<writingNotesList.size()){
                 listView.getChildAt(grayLinkedList.get(i)).setBackgroundColor(Color.WHITE);}}}
@@ -197,8 +197,8 @@ public class WritingNoteFragment extends Fragment {
         return true;
     }
 
-    public LinkedList<String>willbeDeleted=new LinkedList<>();
-    public void addToWillbeDeleted(){
+    public static LinkedList<String>willbeDeleted=new LinkedList<>();
+    public static void addToWillbeDeleted(){
         for(int i=0;i<grayLinkedList.size();i++){
             willbeDeleted.add(writingNotesList.get(grayLinkedList.get(i)));}}
 
@@ -222,4 +222,6 @@ public class WritingNoteFragment extends Fragment {
 
 
     public static void notifyAdapter(){arrayAdapter.notifyDataSetChanged();}
+
+
 }

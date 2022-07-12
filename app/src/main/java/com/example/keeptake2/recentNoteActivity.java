@@ -1,5 +1,6 @@
 package com.example.keeptake2;
 
+import static com.example.keeptake2.WritingNoteFragment.writingNotesList;
 import static com.example.keeptake2.fontSizeDialogRcntNote.rcntNoteFntSize;
 
 import androidx.annotation.NonNull;
@@ -139,12 +140,16 @@ public class recentNoteActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    public int getRecentNoteTitleIndex(){return writingNotesList.indexOf(getNoteTitle(getNoteId()));}
+    public void replaceNewRecentNoteTitle(int index){writingNotesList.set(index,recentNoteTitle.getText().toString());}
 
 
     @Override
     public void onBackPressed() {
         getNoteColor();
         updateDB();
+        replaceNewRecentNoteTitle(getRecentNoteTitleIndex());
+        WritingNoteFragment.notifyAdapter();
         super.onBackPressed();
     }
 }
